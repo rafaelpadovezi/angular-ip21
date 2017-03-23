@@ -1,4 +1,4 @@
-ip21SqlService.$inject = ['$http', '$q']
+ip21SqlService.$inject = ['$http', '$q'];
 
 export default ip21SqlService;
 
@@ -7,9 +7,11 @@ function ip21SqlService($http, $q) {
         create
     };
 
-    function create(serverConfig) {
-        if (serverConfig == undefined || typeof(serverConfig) != 'object')
-            throw new TypeError('create expects a server configuration object as argument.');
+    function create(url, port, config = {}) {
+        if (typeof(url) !== 'string') throw new TypeError('create expects a valid URL string as first parameter');
+        if (typeof(port) !== 'number') throw new TypeError('create expects a valid Port number as first parameter');
+        config.asda = config.asda || 'CHARINT=N;CHARFLOAT=N;CHARTIME=N;CONVERTERRORS=N';
+        config.host = config.host || 'localhost';
 
         return {
             executeSelect,
@@ -19,25 +21,23 @@ function ip21SqlService($http, $q) {
         function execute(query, isSelect) {
             const deferred = $q.defer();
 
-            if (!serverConfig)
-                throw "InfoPlus.21 configuration is undefined. Use setConfig."
-
             const s = isSelect ? 1 : 0;
             const payload =
+                
                 '<SQL c="DRIVER={AspenTech SQLplus};' +
-                'HOST=' + serverConfig.host + ';' +
-                'Port=' + serverConfig.port + ';' +
-                serverConfig.adsa + '" s="' + s + '">' +
+                'HOST=' + config.host + ';' +
+                'Port=' + port + ';' +
+                config.adsa + '" s="' + s + '">' +
                 '<![CDATA[' + query + ']]>' +
                 '</SQL>';
 
             $http({
                 method: 'POST',
-                url: serverConfig.url,
+                url: url,
                 data: payload,
                 withCredentials: true,
                 headers: {
-                    "Content-Type": "text/plain"
+                    'Content-Type': 'text/plain'
                 }
             })
                 .then(function (response) {
@@ -58,12 +58,12 @@ function ip21SqlService($http, $q) {
 
             if (data.result)
                 if (data.result.es)
-                    throw "O Web Service do InfoPlus.21 retornou um erro: " + data.result.es;
+                    throw 'O Web Service do InfoPlus.21 retornou um erro: ' + data.result.es;
 
-            if (data[0].r === "E")
-                throw "O Web Service do InfoPlus.21 retornou um erro: " + data[0].aes;
+            if (data[0].r === 'E')
+                throw 'O Web Service do InfoPlus.21 retornou um erro: ' + data[0].aes;
 
-            if (data[0].r === "N")
+            if (data[0].r === 'N')
                 return [];
 
             //Verificar
@@ -92,12 +92,12 @@ function ip21SqlService($http, $q) {
 
             if (data.result)
                 if (data.result.es)
-                    throw "O Web Service do InfoPlus.21 retornou um erro: " + data.result.es;
+                    throw 'O Web Service do InfoPlus.21 retornou um erro: ' + data.result.es;
 
-            if (data[0].r === "E")
-                throw "O Web Service do InfoPlus.21 retornou um erro: " + data[0].aes;
+            if (data[0].r === 'E')
+                throw 'O Web Service do InfoPlus.21 retornou um erro: ' + data[0].aes;
 
-            if (data[0].r === "N")
+            if (data[0].r === 'N')
                 return [];
 
             return response;
