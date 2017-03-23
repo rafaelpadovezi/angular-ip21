@@ -14,13 +14,20 @@ Include the module name ```angular-ip21``` in your angular app. For example:
 angular.module('app', ['angular-ip21']);
 ```
 ### Usage
+The ```create``` function accept three parameters. The ```config``` parameter is *optional*
+```javascript
+ip21SqlService.create(url, port, config)
+```
+An example of utilization:
 ```javascript
 function controller(ip21SqlService) {
-    var ip21Sql = ip21SqlService.create({
-        url: "http://172.21.199.106/ProcessData/AtProcessDataREST.dll/SQL",
-        host: "localhost",
-        port: 10014,
-        adsa: "CHARINT=N;CHARFLOAT=N;CHARTIME=N;CONVERTERRORS=N"
+    var ip21Sql = ip21SqlService.create(
+        "http://172.21.199.106/ProcessData/AtProcessDataREST.dll/SQL", // url
+        10014,                                                         // port
+        {                                                              // config
+            host: "localhost",
+            adsa: "CHARINT=N;CHARFLOAT=N;CHARTIME=N;CONVERTERRORS=N"
+        }
     });
 
     ip21Sql.executeSelect("select name, ip_input_value from ip_analogdef where name like 'MUT-012%'")
@@ -29,3 +36,7 @@ function controller(ip21SqlService) {
         });
 }
 ```
+
+### Demo
+
+To run the demo ```npm start```
