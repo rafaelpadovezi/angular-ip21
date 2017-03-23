@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+<meta charset="UTF-8">
+<title>Angular Ip21 Demo</title>
+</head>
+
+
+<body ng-controller="angularIp21Demo as $ctrl">
+    <div>
+        <pre>{{$ctrl.query}}</pre>
+    </div>
+    <div>
+        <pre>{{$ctrl.data | json}}</pre>
+    </div>
+    <script src="../node_modules/angular/angular.js"></script>
+    <script src="../dist/angular-ip21.min.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+{
+  "name": "angular-ip21",
+  "version": "1.0.0",
+  "description": "AngularJS library to access AspenTech InfoPlus21 Webservice (v >= 8)",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha",
+    "build": "webpack",
+    "dev": "webpack --progress --colors --watch --display-error-details"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rafaelpadovezi/angular-ip21.git"
+  },
+  "keywords": [
+    "angularjs",
+    "angular",
+    "ip21",
+    "aspentech",
+    "infoplus21",
+    "pims",
+    "webservice"
+  ],
+  "author": "rafaelpadovezi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rafaelpadovezi/angular-ip21/issues"
+  },
+  "homepage": "https://github.com/rafaelpadovezi/angular-ip21#readme",
+  "devDependencies": {
+    "angular-mocks": "^1.6.3",
+    "babel-core": "^6.24.0",
+    "babel-loader": "^6.4.1",
+    "babel-preset-env": "^1.2.2",
+    "babel-preset-es2015": "^6.24.0",
+    "karma": "^1.5.0",
+    "karma-babel-preprocessor": "^6.0.1",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-mocha": "^1.3.0",
+    "karma-sourcemap-loader": "^0.3.7",
+    "karma-webpack": "^2.0.3",
+    "mocha": "^3.2.0",
+    "webpack": "^2.3.1",
+    "webpack-dev-server": "^2.4.2"
+  }
+}
