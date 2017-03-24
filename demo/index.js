@@ -4,13 +4,13 @@ angular
 
 function controller(ip21SqlService) {
     var vm = this;
-    var url = 'http://172.21.199.106/ProcessData/AtProcessDataREST.dll/SQL';
+    var url = 'http://hostname/ProcessData/AtProcessDataREST.dll/SQL';
     var port  = 10014;
 
     var ip21Sql = ip21SqlService.create(url, port);
 
 
-    vm.query = "select name, ip_input_value from ip_analogdef where name like 'MUT-012%'";
+    vm.query = "select name, ip_input_value from ip_analogdef where name like 'abc-012%'";
     ip21Sql.executeSelect(vm.query)
         .then(function(data) {
             console.log(data);

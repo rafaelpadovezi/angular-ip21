@@ -22,7 +22,7 @@ An example of utilization:
 ```javascript
 function controller(ip21SqlService) {
     var ip21Sql = ip21SqlService.create(
-        "http://172.21.199.106/ProcessData/AtProcessDataREST.dll/SQL", // url
+        "http://hostname/ProcessData/AtProcessDataREST.dll/SQL", // url
         10014,                                                         // port
         {                                                              // config
             host: "localhost",
@@ -30,7 +30,7 @@ function controller(ip21SqlService) {
         }
     });
 
-    ip21Sql.executeSelect("select name, ip_input_value from ip_analogdef where name like 'MUT-012%'")
+    ip21Sql.executeSelect("select name, ip_input_value from ip_analogdef")
         .then(function(data) {
             ...
         });

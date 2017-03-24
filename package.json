@@ -1,6 +1,6 @@
 {
   "name": "angular-ip21",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "AngularJS library to access AspenTech InfoPlus21 Webservice (v >= 8)",
   "main": "src/index.js",
   "directories": {
