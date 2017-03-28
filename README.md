@@ -28,7 +28,7 @@ function controller(ip21SqlService) {
             host: "localhost",
             adsa: "CHARINT=N;CHARFLOAT=N;CHARTIME=N;CONVERTERRORS=N"
         }
-    });
+    );
 
     ip21Sql.executeSelect("select name, ip_input_value from ip_analogdef")
         .then(function(data) {
