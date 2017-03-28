@@ -120,15 +120,7 @@ function ip21SqlService($http, $q) {
                 url: url,
                 data: payload,
                 withCredentials: true,
-                transformResponse: [function (data) {
-                    try {
-                        return JSON.parse(data);
-                    } catch (err) {
-                        var obj;
-                        eval('obj = ' + data);
-                        return obj;
-                    }
-                }],
+                transformResponse: [parseResponseManualy],
                 headers: {
                     'Content-Type': 'text/plain'
                 }
@@ -139,6 +131,16 @@ function ip21SqlService($http, $q) {
             });
 
             return deferred.promise;
+        }
+
+        function parseResponseManualy(data) {
+            try {
+                return JSON.parse(data);
+            } catch (err) {
+                var obj;
+                eval('obj = ' + data);
+                return obj;
+            }
         }
 
         function parseDataSelect(response) {
